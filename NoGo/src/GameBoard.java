@@ -2,7 +2,7 @@
 public class GameBoard {
 	
 	public int m_boardSize;
-	public int[][] boardState = new int[m_boardSize][m_boardSize];
+	public int[][] boardState = new int[m_boardSize + 2][m_boardSize + 2];
 	public int blackScore;
 	public int whiteScore;
 	static final int defaultGameBoardSize = 9;
@@ -25,13 +25,16 @@ public class GameBoard {
     }
     
     /**
-     * Initilize the board
+     * Initialize the board
      * Sets the board size and blacks and white score
      */
 	private void initializeGameBoard(int boardSize){
 		m_boardSize = boardSize;
 		blackScore = 0;
 		whiteScore = 0;
+		
+		// Specify boundary nodes
+		
 	}
 	
 	
