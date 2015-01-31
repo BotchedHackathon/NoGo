@@ -38,6 +38,8 @@ public class MainActivity extends ActionBarActivity {
         final ImageView blackPieceView = new ImageView(this);
         blackPieceView.setImageResource(R.drawable.black_piece);
         blackPieceView.setLayoutParams (new LayoutParams(30, 30));
+        blackPieceView.setX(100);
+        blackPieceView.setY(100);
 
         //adding piece view to layout
         rel.addView(blackPieceView);
