@@ -6,6 +6,11 @@ package com.botchedcabin.nogoproto;
  */
 public class ConnectedComponents {
 
-    public Coordinate[][] ComponentReferences = new Coordinate;
+    /**
+     *
+     */
+    public int m_boardSize;
+    public Coordinate[][] ComponentReferences = new Coordinate[m_boardSize+2][m_boardSize+2];
+
 
 }

@@ -9,21 +9,18 @@ package com.botchedcabin.nogoproto;
  */
 
 public class Coordinate {
-    // Stores a tuple of coordinate values.
+    // Stores a tuple of coordinate values, and depth of subtree rooted at current node.
     private int x;
     private int y;
+    private int depth;
 
     static final int defaultCoord = -1;
+    static final int defaultDepth = 0;
 
     /**
     * Default constructor.  Sets node to top of tree.
     */
-    public Coordinate(){ setCoordinate(defaultCoord,defaultCoord); }
-
-    /**
-     * More elaborate constructor.  Sets parent node with coordinate [x1,y1]
-     */
-    public Coordinate(int x1, int y1){ setCoordinate(x1,y1); }
+    public Coordinate(){ setCoordinate(defaultCoord,defaultCoord); setDepth(defaultDepth);}
 
 
     /**
@@ -35,7 +32,14 @@ public class Coordinate {
     }
 
     /**
-     * Fetch x or y coordinate of parent node
+     * Set depth of subtree rooted at parent node to depth1.
+     */
+    public void setDepth(int depth1){
+        depth = depth1;
+    }
+
+    /**
+     * Fetch x or y coordinate of parent node or the depth of the subtree rooted at current node
      */
     public int getXCoordinate(){
         return x;
@@ -43,5 +47,9 @@ public class Coordinate {
 
     public int getYCoordinate(){
         return y;
+    }
+
+    public int getDepth(){
+        return depth;
     }
 }
