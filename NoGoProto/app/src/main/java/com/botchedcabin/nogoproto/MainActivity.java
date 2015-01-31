@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.RelativeLayout;;
+import android.widget.NumberPicker;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -22,20 +24,8 @@ public class MainActivity extends ActionBarActivity {
 
         final Button newButton = (Button) findViewById(R.id.newbutton);
         final Button endButton = (Button) findViewById(R.id.endButton);
-
-        newButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                endButton.setVisibility(View.VISIBLE);
-                newButton.setVisibility(View.INVISIBLE);
-            }
-        });
-
-        endButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                newButton.setVisibility(View.VISIBLE);
-                endButton.setVisibility(View.INVISIBLE);
-            }
-        });
+        final NumberPicker boardSizePicker = (NumberPicker) findViewById(R.id.boardSizePicker);
+        final TextView boardDimLabel = (TextView) findViewById(R.id.BoardDimLabel);
 
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -45,12 +35,45 @@ public class MainActivity extends ActionBarActivity {
 
         //adding imageview for black piece
         RelativeLayout rel = (RelativeLayout) findViewById(R.id.mainactivity);
-        ImageView blackPieceView = new ImageView(this);
+        final ImageView blackPieceView = new ImageView(this);
         blackPieceView.setImageResource(R.drawable.black_piece);
         blackPieceView.setLayoutParams (new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
         //adding piece view to layout
         rel.addView(blackPieceView);
+        newButton.setText("New Game");
+
+        newButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (newButton.getText() == "New Game") {
+                    blackPieceView.setVisibility(View.INVISIBLE);
+                    boardSizePicker.setVisibility(View.VISIBLE);
+                    boardSizePicker.setMinValue(4);
+                    boardSizePicker.setMaxValue(64);
+                    boardDimLabel.setVisibility(View.VISIBLE);
+                    newButton.setText("Go!");
+                } else if (newButton.getText() == "Go!") {
+                    if (boardSizePicker.getValue() < 4 || boardSizePicker.getValue() > 64) {
+                        boardDimLabel.setText("Must be >4 and <64");
+                    } else {
+                        boardDimLabel.setVisibility(View.INVISIBLE);
+                        boardSizePicker.setVisibility(View.INVISIBLE);
+                        newButton.setVisibility(View.INVISIBLE);
+                        endButton.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    newButton.setText("New Game");
+                }
+            }
+        });
+
+        endButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                newButton.setVisibility(View.VISIBLE);
+                endButton.setVisibility(View.INVISIBLE);
+                newButton.setText("New Game");
+            }
+        });
     }
 
 
