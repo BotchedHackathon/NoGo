@@ -53,7 +53,7 @@ public class GameBoard {
     /**
      * Method to convert a gameboard coordinate to it's proper index value
      */
-    private int convertCoordToIndex(int x, int y){
+    public int convertCoordToIndex(int x, int y){
 
         return 1;
     }
@@ -61,31 +61,6 @@ public class GameBoard {
     public boolean validateMove(int x, int y){
         // Check if move is legal
         return true;
-    }
-
-    public void placePiece(int x, int y){
-        //Called by UI when a player clicks a point on the board.
-
-        if (validateMove(x, y)) {
-            switch (Game.indexGameState) {
-                case 0:
-                {
-                    placeBlackPiece(x, y);
-                    Game.indexGameState = 1;
-                    break;
-                }
-
-                case 1:
-                {
-                    placeWhitePiece(x, y);
-                    Game.indexGameState = 0;
-                }
-                case 2:
-                {
-                    Game.indexGameState = 2;
-                }
-            }
-        }
     }
 
     public void placeBlackPiece(int x, int y){
