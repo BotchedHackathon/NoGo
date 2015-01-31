@@ -101,6 +101,10 @@ public class MainActivity extends ActionBarActivity {
 
         switch(action) {
             case (MotionEvent.ACTION_DOWN) :
+
+                final Button endButton = (Button) findViewById(R.id.endButton);
+                if (endButton.getVisibility() == View.INVISIBLE)
+                    return true;
                 //adding imageview for black piece
                 RelativeLayout rel = (RelativeLayout) findViewById(R.id.mainactivity);
                 final ImageView blackPieceView = new ImageView(this);
