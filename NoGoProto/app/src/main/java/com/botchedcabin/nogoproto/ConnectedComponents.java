@@ -5,6 +5,6 @@ package com.botchedcabin.nogoproto;
  */
 public class ConnectedComponents {
 
-    public Coordinate[][] ComponentReferences = new Coordinate;
+    public Coordinate[][] ComponentReferences = new Coordinate[1][1];
 
 }
