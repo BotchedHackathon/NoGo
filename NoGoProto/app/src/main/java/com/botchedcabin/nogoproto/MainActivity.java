@@ -40,22 +40,11 @@ public class MainActivity extends ActionBarActivity {
                 LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT));
 
-        //adding imageview for black piece
-        RelativeLayout rel = (RelativeLayout) findViewById(R.id.mainactivity);
-        final ImageView blackPieceView = new ImageView(this);
-        blackPieceView.setImageResource(R.drawable.black_piece);
-        blackPieceView.setLayoutParams (new LayoutParams(30, 30));
-        blackPieceView.setX(100);
-        blackPieceView.setY(100);
-
-        //adding piece view to layout
-        rel.addView(blackPieceView);
         newButton.setText("New Game");
 
         newButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (newButton.getText() == "New Game") {
-                    blackPieceView.setVisibility(View.INVISIBLE);
                     boardSizePicker.setVisibility(View.VISIBLE);
                     boardSizePicker.setMinValue(4);
                     boardSizePicker.setMaxValue(64);
@@ -70,7 +59,6 @@ public class MainActivity extends ActionBarActivity {
                         boardSizePicker.setVisibility(View.INVISIBLE);
                         newButton.setVisibility(View.INVISIBLE);
                         endButton.setVisibility(View.VISIBLE);
-                        blackPieceView.setVisibility(View.VISIBLE);
                     }
                 } else {
                     newButton.setText("New Game");
