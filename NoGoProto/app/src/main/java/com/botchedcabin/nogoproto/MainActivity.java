@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
                 LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT));
 
+        // Doing this here because otherwise the first conditional below fails
         newButton.setText("New Game");
 
         newButton.setOnClickListener(new View.OnClickListener() {
