@@ -13,11 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.view.MotionEvent;
+import android.support.v4.view.MotionEventCompat;
 
 
 public class MainActivity extends ActionBarActivity {
 
     public GameBoard gb = new GameBoard();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +84,32 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+
+        final Button newButton = (Button) findViewById(R.id.newbutton);
+        int action = MotionEventCompat.getActionMasked(event);
+
+        switch(action) {
+            case (MotionEvent.ACTION_DOWN) :
+                newButton.setVisibility(View.VISIBLE);
+                return true;
+            case (MotionEvent.ACTION_MOVE) :
+
+                return true;
+            case (MotionEvent.ACTION_UP) :
+
+                return true;
+            case (MotionEvent.ACTION_CANCEL) :
+
+                return true;
+            case (MotionEvent.ACTION_OUTSIDE) :
+
+                return true;
+            default :
+                return super.onTouchEvent(event);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
