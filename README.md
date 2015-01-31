@@ -17,7 +17,8 @@ Eclipse
 Emulators (optional)
 Genymotion (prereq is virtualbox)
 
-Windiff
+
+WinMerge -  http://winmerge.org/
 Sublime text 3
 
 Builds
