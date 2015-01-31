@@ -1,2 +1,13 @@
 Documentation for NoGo
 
+
+
+~~ Backend Classes ~~
+
+GameBoard
+- Keeps track of the game board state, score
+- Methods
+  - Constructors
+  - Check if legal move
+  - Place stone of each color
+  -
