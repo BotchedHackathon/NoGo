@@ -1,11 +1,16 @@
 package com.botchedcabin.nogoproto;
 
+import android.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
+import android.widget.ImageView;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -31,6 +36,21 @@ public class MainActivity extends ActionBarActivity {
                 endButton.setVisibility(View.INVISIBLE);
             }
         });
+
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setLayoutParams(new LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT));
+
+        //adding imageview for black piece
+        RelativeLayout rel = (RelativeLayout) findViewById(R.id.mainactivity);
+        ImageView blackPieceView = new ImageView(this);
+        blackPieceView.setImageResource(R.drawable.black_piece);
+        blackPieceView.setLayoutParams (new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
+        //adding piece view to layout
+        rel.addView(blackPieceView);
     }
 
 
