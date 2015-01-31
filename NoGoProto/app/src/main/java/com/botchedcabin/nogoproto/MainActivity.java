@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
+    public GameBoard gb = new GameBoard();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +59,12 @@ public class MainActivity extends ActionBarActivity {
                     if (boardSizePicker.getValue() < 4 || boardSizePicker.getValue() > 64) {
                         boardDimLabel.setText("Must be >4 and <64");
                     } else {
+                        //gb.newGame(boardSizePicker.getValue());
                         boardDimLabel.setVisibility(View.INVISIBLE);
                         boardSizePicker.setVisibility(View.INVISIBLE);
                         newButton.setVisibility(View.INVISIBLE);
                         endButton.setVisibility(View.VISIBLE);
+                        blackPieceView.setVisibility(View.VISIBLE);
                     }
                 } else {
                     newButton.setText("New Game");
