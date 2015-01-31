@@ -16,9 +16,19 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         final Button newButton = (Button) findViewById(R.id.newbutton);
+        final Button endButton = (Button) findViewById(R.id.endButton);
+
         newButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                newButton.setText("Game Started");
+                endButton.setVisibility(View.VISIBLE);
+                newButton.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        endButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                newButton.setVisibility(View.VISIBLE);
+                endButton.setVisibility(View.INVISIBLE);
             }
         });
     }
