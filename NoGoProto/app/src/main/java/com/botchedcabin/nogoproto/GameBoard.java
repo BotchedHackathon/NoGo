@@ -68,8 +68,22 @@ public class GameBoard {
 
         if (validateMove(x, y)) {
             switch (Game.indexGameState) {
-                case 0: placeBlackPiece(x, y);
-                case 1: placeWhitePiece(x, y);
+                case 0:
+                {
+                    placeBlackPiece(x, y);
+                    Game.indexGameState = 1;
+                    break;
+                }
+
+                case 1:
+                {
+                    placeWhitePiece(x, y);
+                    Game.indexGameState = 0;
+                }
+                case 2:
+                {
+                    Game.indexGameState = 2;
+                }
             }
         }
     }

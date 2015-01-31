@@ -28,6 +28,11 @@ public class Game {
         GameBoard m_gameboard = new GameBoard();
     }
 
+    public void newGame(int x){
+        indexGameState = 0;
+        m_gameboard = new GameBoard(x);
+    }
+
     public void checkGameState(int x, int y){
 
     }
