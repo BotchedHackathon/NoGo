@@ -86,13 +86,20 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
-
-        final Button newButton = (Button) findViewById(R.id.newbutton);
         int action = MotionEventCompat.getActionMasked(event);
 
         switch(action) {
             case (MotionEvent.ACTION_DOWN) :
-                newButton.setVisibility(View.VISIBLE);
+                //adding imageview for black piece
+                RelativeLayout rel = (RelativeLayout) findViewById(R.id.mainactivity);
+                final ImageView blackPieceView = new ImageView(this);
+                blackPieceView.setImageResource(R.drawable.black_piece);
+                blackPieceView.setLayoutParams (new LayoutParams(30, 30));
+                blackPieceView.setX(event.getX() - 55); // It's a weird offset for me, and I don't know why
+                blackPieceView.setY(event.getY() - 300);
+
+                //adding piece view to layout
+                rel.addView(blackPieceView);
                 return true;
             case (MotionEvent.ACTION_MOVE) :
 
