@@ -11,10 +11,18 @@ public class Game {
     public int whiteTerritory;
     public int blackScore;
     public int whiteScore;
+    static public int indexGameState;
+        // 0 = black player's turn
+        // 1 = white player's turn
+        // 2 = game over
     public GameBoard m_gameboard;
 
-    public Game () {
+    public Game() {
 
+        blackPiecesCaptured = 0;
+        whitePiecesCaptured = 0;
+        blackTerritory = 0;
+        whiteTerritory = 0;
         blackScore = whitePiecesCaptured + blackTerritory;
         whiteScore = blackPiecesCaptured+ whiteTerritory;
         GameBoard m_gameboard = new GameBoard();
@@ -31,6 +39,8 @@ public class Game {
     public void capturePieces(){
 
     }
+
+
 
     public void calculateScore(){
         // Update Score

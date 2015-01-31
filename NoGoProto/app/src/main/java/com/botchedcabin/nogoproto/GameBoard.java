@@ -1,14 +1,26 @@
 package com.botchedcabin.nogoproto;
 
 /**
- * Created by Sean on 1/31/2015.
+ * GameBoard class represents the Go game board.
+ *
+ *  m_boardSize is the length/width of the square grid size.
+ *
+ *  boardState is a 2D int array that keeps track of the state of the board
+ *  and where pieces are placed:
+ *      0 = empty
+ *      1 = black piece
+ *      2 = white piece
+ *
+ *      defaultGameBoardSize defines the dimension of the Go board if
+ *      the constructor is called without passing in a value.
  */
 public class GameBoard {
 
     public int m_boardSize;
     public int[][] boardState = new int[m_boardSize + 2][m_boardSize + 2];
-
     static final int defaultGameBoardSize = 9;
+//  Need a weightedUnionFind object to keep track of connections
+
 
     /**
      * Default constructor.
@@ -51,17 +63,28 @@ public class GameBoard {
         return true;
     }
 
-    public void placeBlack(int x, int y){
-        // Place a black stone (set to 1)
-        boardState[x][y]=1;
+    public void placePiece(int x, int y){
+        //Called by UI when a player clicks a point on the board.
+
+        if (validateMove(x, y)) {
+            switch (Game.indexGameState) {
+                case 0: placeBlackPiece(x, y);
+                case 1: placeWhitePiece(x, y);
+            }
+        }
     }
 
-    public void placeWhite(int x, int y){
-        // Place a white stone (set to 2)
-        boardState[x][y]=2;
+    public void placeBlackPiece(int x, int y){
+        boardState[x][y] = 1;
     }
 
+    public void placeWhitePiece(int x, int y){
+        boardState[x][y] = 2;
+    }
 
+    public int[][] getBoard(){
+        return boardState;
+    }
 
 
 
