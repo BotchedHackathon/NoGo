@@ -7,8 +7,7 @@ public class GameBoard {
 
     public int m_boardSize;
     public int[][] boardState = new int[m_boardSize + 2][m_boardSize + 2];
-    public int blackScore;
-    public int whiteScore;
+
     static final int defaultGameBoardSize = 9;
 
     /**
@@ -34,8 +33,6 @@ public class GameBoard {
      */
     private void initializeGameBoard(int boardSize){
         m_boardSize = boardSize;
-        blackScore = 0;
-        whiteScore = 0;
 
         // Specify boundary nodes
 
@@ -54,13 +51,6 @@ public class GameBoard {
         return true;
     }
 
-    /**
-     *
-     */
-    public void checkGameState(int x, int y){
-
-    }
-
     public void placeBlack(int x, int y){
         // Place a black stone (set to 1)
         boardState[x][y]=1;
@@ -71,11 +61,7 @@ public class GameBoard {
         boardState[x][y]=2;
     }
 
-    public void calculateScore(){
-        // Update Score
-        blackScore = 0;
-        whiteScore = 0;
-    }
+
 
 
 
