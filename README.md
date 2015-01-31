@@ -1,2 +1,10 @@
 # NoGo
 Go app for android
+
+Download the following:
+
+JAVA 8
+
+
+TODO:
+>????????
