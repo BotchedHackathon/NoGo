@@ -91,19 +91,29 @@ public class MainActivity extends ActionBarActivity {
             case (MotionEvent.ACTION_DOWN) :
 
                 final Button endButton = (Button) findViewById(R.id.endButton);
-                if (endButton.getVisibility() == View.INVISIBLE)
+                if (endButton.getVisibility() == View.INVISIBLE || game.getGameState() == 2)
                     return true;
+
                 //adding imageview for black piece
                 RelativeLayout rel = (RelativeLayout) findViewById(R.id.mainactivity);
-                final ImageView blackPieceView = new ImageView(this);
-                blackPieceView.setImageResource(R.drawable.black_piece);
-                blackPieceView.setLayoutParams (new LayoutParams(30, 30));
-                blackPieceView.setX(event.getX() - 55); // It's a weird offset for me, and I don't know why
-                blackPieceView.setY(event.getY() - 300);
-                pieces.addElement(blackPieceView);
+                final ImageView newPieceView = new ImageView(this);
+
+                if (game.getGameState() == 0) {
+                    newPieceView.setImageResource(R.drawable.black_piece);
+                } else {
+                    newPieceView.setImageResource(R.drawable.white_piece);
+                }
+
+                newPieceView.setLayoutParams(new LayoutParams(30, 30));
+                newPieceView.setX(event.getX() - 55); // It's a weird offset for me, and I don't know why
+                newPieceView.setY(event.getY() - 300);
+                pieces.addElement(newPieceView);
 
                 //adding piece view to layout
-                rel.addView(blackPieceView);
+                rel.addView(newPieceView);
+
+                game.placePiece(0,0);
+
                 return true;
             case (MotionEvent.ACTION_MOVE) :
 
