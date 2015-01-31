@@ -10,6 +10,8 @@ JAVA 8
 
 IDEs (pick one)
 Android Studio
+    mac needs to run this command in Terminal to set the JVM
+    "launchctl setenv STUDIO_JDK /Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk"
 Eclipse
 
 Emulators (optional)
