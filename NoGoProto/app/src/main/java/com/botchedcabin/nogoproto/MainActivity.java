@@ -16,10 +16,13 @@ import android.widget.TextView;
 import android.view.MotionEvent;
 import android.support.v4.view.MotionEventCompat;
 
+import java.util.Vector;
+
 
 public class MainActivity extends ActionBarActivity {
 
-    public GameBoard gb = new GameBoard();
+    public Game game = new Game();
+    Vector<ImageView> pieces = new Vector<ImageView>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,7 @@ public class MainActivity extends ActionBarActivity {
                     if (boardSizePicker.getValue() < 4 || boardSizePicker.getValue() > 64) {
                         boardDimLabel.setText("Must be >4 and <64");
                     } else {
-                        //gb.newGame(boardSizePicker.getValue());
+                        game.newGame(boardSizePicker.getValue());
                         boardDimLabel.setVisibility(View.INVISIBLE);
                         boardSizePicker.setVisibility(View.INVISIBLE);
                         newButton.setVisibility(View.INVISIBLE);
@@ -80,6 +83,14 @@ public class MainActivity extends ActionBarActivity {
                 newButton.setVisibility(View.VISIBLE);
                 endButton.setVisibility(View.INVISIBLE);
                 newButton.setText("New Game");
+
+                for (Object obj : pieces) {
+                    if (obj instanceof ImageView) {
+                        ((ImageView) obj).setVisibility(View.INVISIBLE);
+                        obj = null;
+                    }
+                }
+                pieces.clear();
             }
         });
     }
@@ -97,6 +108,7 @@ public class MainActivity extends ActionBarActivity {
                 blackPieceView.setLayoutParams (new LayoutParams(30, 30));
                 blackPieceView.setX(event.getX() - 55); // It's a weird offset for me, and I don't know why
                 blackPieceView.setY(event.getY() - 300);
+                pieces.addElement(blackPieceView);
 
                 //adding piece view to layout
                 rel.addView(blackPieceView);
