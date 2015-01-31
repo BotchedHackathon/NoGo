@@ -7,15 +7,27 @@ public class GameBoard {
 	public int whiteScore;
 	static final int defaultGameBoardSize = 9;
 	
-	// Constructors
-	public GameBoard(int boardSize){
-		initializeGameBoard(boardSize);
-	}
-	
+    /**
+     * Default constructor.
+     * Sets board size to 9x9
+     */
 	public GameBoard(){
 		initializeGameBoard(defaultGameBoardSize);
 	}
-	
+    
+    /**
+     * A constructor.
+     * A more elaborate description of the constructor.
+     * @param boardSize The size of the desired board.
+     */
+    public GameBoard(int boardSize){
+        initializeGameBoard(boardSize);
+    }
+    
+    /**
+     * Initilize the board
+     * Sets the board size and blacks and white score
+     */
 	private void initializeGameBoard(int boardSize){
 		m_boardSize = boardSize;
 		blackScore = 0;
