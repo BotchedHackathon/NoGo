@@ -51,7 +51,11 @@ public class GameBoard {
 		boardState[x][y]=2;
 	}
 	
-	
+	public void calculateScore(){
+		// Update Score
+		blackScore = 0;
+		whiteScore = 0;
+	}
 	
 
 
