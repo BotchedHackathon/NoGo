@@ -1,5 +1,4 @@
 package com.botchedcabin.nogoproto;
-import java.io.*;
 
 /**
  * Storage for references to coordinates of node one level up.

@@ -1,9 +1,7 @@
 package com.botchedcabin.nogoproto;
 
-import java.io.*;
-
 /**
- * Connected component data structure for NoGo.
+ * Connected components data structure for NoGo.
  * Created by Michael Nip on 1/31/2015.
  */
 public class ConnectedComponents {
@@ -88,9 +86,6 @@ public class ConnectedComponents {
         count--;
 
     }
-
-
-
 }
 
 class ConnectedComponentsTest{
