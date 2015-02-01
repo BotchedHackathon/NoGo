@@ -18,7 +18,7 @@ package com.botchedcabin.nogoproto;
 public class GameBoard {
 
     public int m_boardSize;
-    public int[][] boardState = new int[m_boardSize + 2][m_boardSize + 2];
+    public int[][] boardState;
     static final int defaultGameBoardSize = 9;
 //  Need a weightedUnionFind object to keep track of connections
 
@@ -46,6 +46,7 @@ public class GameBoard {
      */
     private void initializeGameBoard(int boardSize){
         m_boardSize = boardSize;
+        boardState = new int[m_boardSize + 2][m_boardSize + 2];
 
         // Need to initialize invisible boundary rows and columns to different value.
         for (int i = 0; i < m_boardSize + 2; i++){
@@ -53,7 +54,7 @@ public class GameBoard {
         }
 
         for (int i = 0; i < m_boardSize + 2; i++){
-            boardState[m_boardSize + 2][i] = 3;
+            boardState[m_boardSize + 1][i] = 3;
         }
 
         for (int i = 0; i < m_boardSize + 2; i++){
@@ -61,7 +62,7 @@ public class GameBoard {
         }
 
         for (int i = 0; i < m_boardSize + 2; i++){
-            boardState[i][m_boardSize + 2] = 3;
+            boardState[i][m_boardSize + 1] = 3;
         }
         // Specify boundary nodes
 
