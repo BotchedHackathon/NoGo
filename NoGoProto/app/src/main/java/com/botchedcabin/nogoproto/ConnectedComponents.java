@@ -1,4 +1,5 @@
 package com.botchedcabin.nogoproto;
+import java.util.ArrayList;
 
 /**
  * Connected components data structure for NoGo.
@@ -86,6 +87,41 @@ public class ConnectedComponents {
         count--;
 
     }
+
+    /**
+     * Flattens the connected component tree
+     */
+    public void flatten(){
+        for(int ii = 0; ii < m_boardSize+2; ii++){
+            for(int jj = 0; jj < m_boardSize+2; ii++){
+
+            }
+        }
+    }
+
+    /**
+     * Lists the elements of the connected component containing the node indexed by (x,y).
+     * @param x x-coordinate
+     * @param y x-coordinate
+     * @return ArrayList of Coordinate objects whose x,y fields are the coordinates of the node in the component
+     */
+
+    public ArrayList<Coordinate> listComponent(int x, int y){
+        ArrayList<Coordinate> members = new ArrayList<>();
+        Coordinate treeRoot1 = find(x,y);
+        Coordinate treeRoot2;
+
+        for(int ii = 0; ii < m_boardSize+2; ii++){
+            for(int jj = 0; jj < m_boardSize+2; jj++){
+                treeRoot2=find(ii,jj);
+                if (treeRoot1.getXCoordinate() == treeRoot2.getXCoordinate() && treeRoot1.getYCoordinate() == treeRoot2.getYCoordinate()) {
+                    members.add(new Coordinate());
+                    members.get(members.size()-1).setCoordinate(ii,jj);
+                }
+            }
+        }
+        return members;
+    }
 }
 
 class ConnectedComponentsTest{
@@ -134,6 +170,14 @@ class ConnectedComponentsTest{
 
         System.out.println("\nNodes (1,8) and (2,8) connected? " + graph.connected(1,8,2,8));
 
+        /**
+         * Test listComponent
+         */
+
+        ArrayList<Coordinate> component = graph.listComponent(1,1);
+        for(int ii = 0; ii < component.size(); ii++){
+            component.get(ii).printContents();
+        }
 
     }
 }
