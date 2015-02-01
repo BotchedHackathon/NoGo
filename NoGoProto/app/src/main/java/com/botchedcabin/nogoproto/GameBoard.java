@@ -10,6 +10,7 @@ package com.botchedcabin.nogoproto;
  *      0 = empty
  *      1 = black piece
  *      2 = white piece
+ *      3 = invisible boundary node
  *
  *      defaultGameBoardSize defines the dimension of the Go board if
  *      the constructor is called without passing in a value.
@@ -17,7 +18,7 @@ package com.botchedcabin.nogoproto;
 public class GameBoard {
 
     public int m_boardSize;
-    public int[][] boardState = new int[m_boardSize + 2][m_boardSize + 2];
+    public int[][] boardState;
     static final int defaultGameBoardSize = 9;
 //  Need a weightedUnionFind object to keep track of connections
 
@@ -45,7 +46,24 @@ public class GameBoard {
      */
     private void initializeGameBoard(int boardSize){
         m_boardSize = boardSize;
+        boardState = new int[m_boardSize + 2][m_boardSize + 2];
 
+        // Need to initialize invisible boundary rows and columns to different value.
+        for (int i = 0; i < m_boardSize + 2; i++){
+            boardState[0][i] = 3;
+        }
+
+        for (int i = 0; i < m_boardSize + 2; i++){
+            boardState[m_boardSize + 1][i] = 3;
+        }
+
+        for (int i = 0; i < m_boardSize + 2; i++){
+            boardState[i][0] = 3;
+        }
+
+        for (int i = 0; i < m_boardSize + 2; i++){
+            boardState[i][m_boardSize + 1] = 3;
+        }
         // Specify boundary nodes
 
     }
@@ -75,6 +93,8 @@ public class GameBoard {
         return boardState;
     }
 
-
+    public int getBoard(int x, int y){
+        return boardState[x][y];
+    }
 
 }

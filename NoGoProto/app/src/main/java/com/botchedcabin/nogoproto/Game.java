@@ -47,10 +47,45 @@ public class Game {
         checkWinner();
     }
 
-    private boolean checkIfSurrounded(int x, int y){
+    /**
+     *
+     * Checks adjacent grid coordinate for it's state.
+     *
+     * int row = row
+     * int col = column
+     * int dir = direction to check:
+     *              3 = Up
+     *      2 = Left        1 = Right
+     *              0 = Down
+     */
 
-        int piece = m_gameboard.convertCoordToIndex(x,y);
-        //if ( m_gameboard.weightedunionfindObj.)
+    private int checkAdjacent(int row, int col, int dir){
+
+        //Down
+        if (dir == 0)
+        {   return m_gameboard.getBoard(row + 1, col);  }
+
+        //Right
+        if (dir == 1)
+        {   return m_gameboard.getBoard(row, col + 1);  }
+
+        //Left
+        if (dir == 2)
+        {   return m_gameboard.getBoard(row, col - 1);  }
+
+        //Up
+        if (dir == 3)
+        {   return m_gameboard.getBoard(row - 1, col);  }
+
+        else
+        { return 9999; }
+
+    }
+
+    private boolean checkIfSurrounded(int row, int col){
+
+        int piece = m_gameboard.convertCoordToIndex(row,col);
+        //( m_gameboard.weightedunionfindObj.getListofConnectedComponents)
 
         return false; //placeholder to prevent build from breaking
     }
