@@ -56,6 +56,14 @@ public class Coordinate {
     public int getSz(){
         return sz;
     }
+
+    /**
+     *
+     */
+    public void printContents(){
+        System.out.println("Tree Root: (" + getXCoordinate() + "," + getYCoordinate() + "),");
+        System.out.println("Subtree Size:" + getSz());
+    }
 }
 
 class CoordinateTest{
@@ -65,19 +73,15 @@ class CoordinateTest{
          * Test Constructor
          */
         System.out.println("Testing Constructor...");
-
         Coordinate aa = new Coordinate();
-        System.out.println("Tree Root: (" + aa.getXCoordinate() + "," + aa.getYCoordinate() + "),");
-        System.out.println("Subtree Size:" + aa.getSz());
+        aa.printContents();
 
         /**
          * Test Modifiers
          */
         System.out.println("Testing Modifiers...");
-        aa.setCoordinate(5,5);
-        aa.setSz(5);
-        System.out.println("Tree Root: (" + aa.getXCoordinate() + "," + aa.getYCoordinate() + "),");
-        System.out.println("Subtree Size: " + aa.getSz());
+        aa.setCoordinate(5,5); aa.setSz(5);
+        aa.printContents();
 
 
     }

@@ -23,8 +23,8 @@ public class ConnectedComponents {
         ComponentReferences = new Coordinate[m_boardSize+2][m_boardSize+2];
         for( int ii = 0; ii < boardSize+2; ii++){
             for( int jj = 0; jj < boardSize+2; jj++){
-                ComponentReferences[ii][jj].setCoordinate(ii,jj);
-                ComponentReferences[ii][jj].setSz(1);
+                //ComponentReferences[ii][jj].setCoordinate(ii,jj);
+                //ComponentReferences[ii][jj].setSz(1);
             }
         }
     }
@@ -95,7 +95,13 @@ class ConnectedComponentsTest{
     public static void main(String[] args) {
         int boardSize = 9;
 
-        //ConnectedComponents graph = new ConnectedComponents(boardSize);
+        ConnectedComponents graph = new ConnectedComponents(boardSize);
+
+        System.out.println("Testing Constructor...");
+
+        System.out.println("Tree Root: (" + graph.ComponentReferences[1][1].getXCoordinate() + "," + graph.ComponentReferences[1][1].getYCoordinate() + "),");
+        System.out.println("Subtree Size:" + graph.ComponentReferences[1][1].getSz());
+
 /**
  *     for(int ii = 0; ii < boardSize+2; ii++){
  *        for(int jj = 0; jj < boardSize+2; jj++){
