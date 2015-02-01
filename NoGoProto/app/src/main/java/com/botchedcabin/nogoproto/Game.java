@@ -61,6 +61,8 @@ public class Game {
 
     private int checkAdjacent(int row, int col, int dir){
 
+        //validate values and throw except when appropriate instead fo returning 9999
+
         //Down
         if (dir == 0)
         {   return m_gameboard.getBoard(row + 1, col);  }
