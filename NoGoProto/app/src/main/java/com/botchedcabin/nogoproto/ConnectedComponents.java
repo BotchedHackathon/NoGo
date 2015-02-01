@@ -19,12 +19,14 @@ public class ConnectedComponents {
      * Initialize an empty union-find data structure for a NoGo board.
      */
     public ConnectedComponents(int boardSize){
-        count = (boardSize+2)^2;
+        m_boardSize = boardSize;
+        count = (m_boardSize+2)*(m_boardSize+2);
         ComponentReferences = new Coordinate[m_boardSize+2][m_boardSize+2];
         for( int ii = 0; ii < boardSize+2; ii++){
             for( int jj = 0; jj < boardSize+2; jj++){
-                //ComponentReferences[ii][jj].setCoordinate(ii,jj);
-                //ComponentReferences[ii][jj].setSz(1);
+                ComponentReferences[ii][jj] = new Coordinate();
+                ComponentReferences[ii][jj].setCoordinate(ii,jj);
+                ComponentReferences[ii][jj].setSz(1);
             }
         }
     }
@@ -95,20 +97,22 @@ class ConnectedComponentsTest{
     public static void main(String[] args) {
         int boardSize = 9;
 
-        ConnectedComponents graph = new ConnectedComponents(boardSize);
-
+        /**
+         * Test Constructor
+         */
         System.out.println("Testing Constructor...");
+        ConnectedComponents graph = new ConnectedComponents(boardSize);
+        for (int ii = 0; ii < boardSize+2; ii++){
+            for (int jj = 0; jj < boardSize+2; jj++){
+                System.out.println("Node (" + ii + "," + jj + ")");
+                graph.ComponentReferences[ii][jj].printContents();
+                System.out.println(" ");
+            }
+        }
 
-        System.out.println("Tree Root: (" + graph.ComponentReferences[1][1].getXCoordinate() + "," + graph.ComponentReferences[1][1].getYCoordinate() + "),");
-        System.out.println("Subtree Size:" + graph.ComponentReferences[1][1].getSz());
-
-/**
- *     for(int ii = 0; ii < boardSize+2; ii++){
- *        for(int jj = 0; jj < boardSize+2; jj++){
- *            System.out.println("Root Node: (" + graph.ComponentReferences[ii][jj].getXCoordinate() + ","+ graph.ComponentReferences[ii][jj].getYCoordinate() + ")");
- *            System.out.println("Number of Elements in Subtree: " + graph.ComponentReferences[ii][jj].getSz());
- *
- *           }
- *      }
- */   }
+        /**
+         * Test count method
+         */
+        System.out.println("Number of Connected Components: " + graph.count());
+    }
 }

@@ -62,7 +62,7 @@ public class Coordinate {
      */
     public void printContents(){
         System.out.println("Tree Root: (" + getXCoordinate() + "," + getYCoordinate() + "),");
-        System.out.println("Subtree Size:" + getSz());
+        System.out.println("Subtree Size: " + getSz() + ",");
     }
 }
 
