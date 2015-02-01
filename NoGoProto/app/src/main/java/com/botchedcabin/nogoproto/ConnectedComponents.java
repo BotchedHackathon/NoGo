@@ -79,11 +79,11 @@ public class ConnectedComponents {
 
         // make smaller root point to larger one
         if (root1.getSz() < root2.getSz()) {
-            ComponentReferences[root1.getXCoordinate()][root1.getYCoordinate()].setCoordinate(root2.getXCoordinate(), root2.getYCoordinate());
             ComponentReferences[root2.getXCoordinate()][root2.getYCoordinate()].setSz(ComponentReferences[root1.getXCoordinate()][root1.getYCoordinate()].getSz() + ComponentReferences[root2.getXCoordinate()][root2.getYCoordinate()].getSz());
+            ComponentReferences[root1.getXCoordinate()][root1.getYCoordinate()].setCoordinate(root2.getXCoordinate(), root2.getYCoordinate());
         }else {
-            ComponentReferences[root2.getXCoordinate()][root2.getYCoordinate()].setCoordinate(root1.getXCoordinate(), root1.getYCoordinate());
             ComponentReferences[root1.getXCoordinate()][root1.getYCoordinate()].setSz(ComponentReferences[root1.getXCoordinate()][root1.getYCoordinate()].getSz() + ComponentReferences[root2.getXCoordinate()][root2.getYCoordinate()].getSz());
+            ComponentReferences[root2.getXCoordinate()][root2.getYCoordinate()].setCoordinate(root1.getXCoordinate(), root1.getYCoordinate());
         }
         count--;
 
@@ -113,6 +113,32 @@ class ConnectedComponentsTest{
         /**
          * Test count method
          */
-        System.out.println("Number of Connected Components: " + graph.count());
+        System.out.println("Number of Connected Components: " + graph.count() +"\n");
+
+        /**
+         * Test find, connected, and union methods
+         */
+        System.out.println("Testing find, connected, and union methods\n");
+        System.out.println("Pre-union:");
+        Coordinate node11 = graph.find(1,1);
+        node11.printContents();
+
+        for (int ii = 1; ii < boardSize; ii++){
+            graph.union(1,ii,1,ii+1);               //Union elements along first row
+            graph.union(2,ii,2,ii+1);               //Union elements along second row
+        }
+
+        System.out.println("\n Post-union:");
+        for (int ii = 0; ii < boardSize+2; ii++){
+            graph.ComponentReferences[1][ii].printContents();
+        }
+
+        System.out.println("\n Union first and second row:");
+        graph.union(1,1,2,1);
+        graph.ComponentReferences[1][1].printContents();
+
+        System.out.println("\nNodes (1,8) and (2,8) connected? " + graph.connected(1,8,2,8));
+
+
     }
 }
