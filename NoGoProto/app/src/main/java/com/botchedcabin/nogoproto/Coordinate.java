@@ -1,4 +1,5 @@
 package com.botchedcabin.nogoproto;
+import java.io.*;
 
 /**
  * Storage for references to coordinates of node one level up.
@@ -54,5 +55,30 @@ public class Coordinate {
 
     public int getSz(){
         return sz;
+    }
+}
+
+class CoordinateTest{
+    public static void main(String[] args){
+
+        /**
+         * Test Constructor
+         */
+        System.out.println("Testing Constructor...");
+
+        Coordinate aa = new Coordinate();
+        System.out.println("Tree Root: (" + aa.getXCoordinate() + "," + aa.getYCoordinate() + "),");
+        System.out.println("Subtree Size:" + aa.getSz());
+
+        /**
+         * Test Modifiers
+         */
+        System.out.println("Testing Modifiers...");
+        aa.setCoordinate(5,5);
+        aa.setSz(5);
+        System.out.println("Tree Root: (" + aa.getXCoordinate() + "," + aa.getYCoordinate() + "),");
+        System.out.println("Subtree Size: " + aa.getSz());
+
+
     }
 }

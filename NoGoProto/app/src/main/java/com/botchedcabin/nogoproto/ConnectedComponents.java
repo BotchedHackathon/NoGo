@@ -1,5 +1,7 @@
 package com.botchedcabin.nogoproto;
 
+import java.io.*;
+
 /**
  * Connected component data structure for NoGo.
  * Created by Michael Nip on 1/31/2015.
@@ -87,4 +89,20 @@ public class ConnectedComponents {
 
 
 
+}
+
+class ConnectedComponentsTest{
+    public static void main(String[] args) {
+        int boardSize = 9;
+
+        //ConnectedComponents graph = new ConnectedComponents(boardSize);
+/**
+ *     for(int ii = 0; ii < boardSize+2; ii++){
+ *        for(int jj = 0; jj < boardSize+2; jj++){
+ *            System.out.println("Root Node: (" + graph.ComponentReferences[ii][jj].getXCoordinate() + ","+ graph.ComponentReferences[ii][jj].getYCoordinate() + ")");
+ *            System.out.println("Number of Elements in Subtree: " + graph.ComponentReferences[ii][jj].getSz());
+ *
+ *           }
+ *      }
+ */   }
 }
