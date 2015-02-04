@@ -49,22 +49,12 @@ public class GameBoard {
         boardState = new int[m_boardSize + 2][m_boardSize + 2];
 
         // Need to initialize invisible boundary rows and columns to different value.
-        for (int i = 0; i < m_boardSize + 2; i++){
+        for (int i = 0; i < m_boardSize + 1; i++){
             boardState[0][i] = 3;
-        }
-
-        for (int i = 0; i < m_boardSize + 2; i++){
-            boardState[m_boardSize + 1][i] = 3;
-        }
-
-        for (int i = 0; i < m_boardSize + 2; i++){
+            boardState[m_boardSize + 1][m_boardSize+1-i] = 3;
             boardState[i][0] = 3;
+            boardState[m_boardSize+1-i][m_boardSize + 1] = 3;
         }
-
-        for (int i = 0; i < m_boardSize + 2; i++){
-            boardState[i][m_boardSize + 1] = 3;
-        }
-        // Specify boundary nodes
 
     }
 
