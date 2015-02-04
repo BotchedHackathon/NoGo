@@ -44,11 +44,11 @@ public class Coordinate {
     /**
      * Fetch x or y coordinate of parent node or the depth of the subtree rooted at current node
      */
-    public int getXCoordinate(){
+    public int getX(){
         return x;
     }
 
-    public int getYCoordinate(){
+    public int getY(){
         return y;
     }
 
@@ -60,7 +60,7 @@ public class Coordinate {
      *
      */
     public void printContents(){
-        System.out.println("Tree Root: (" + getXCoordinate() + "," + getYCoordinate() + "),");
+        System.out.println("Tree Root: (" + getX() + "," + getY() + "),");
         System.out.println("Subtree Size: " + getSz() + ",");
     }
 }

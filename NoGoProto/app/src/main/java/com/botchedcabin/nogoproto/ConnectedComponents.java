@@ -44,9 +44,9 @@ public class ConnectedComponents {
      * @return the coordinate identifier for the component containing site (x,y)
      */
     public Coordinate find(int x, int y){
-        while (x != ComponentReferences[x][y].getXCoordinate() || y != ComponentReferences[x][y].getYCoordinate()){
-            x = ComponentReferences[x][y].getXCoordinate();
-            y = ComponentReferences[x][y].getYCoordinate();
+        while (x != ComponentReferences[x][y].getX() || y != ComponentReferences[x][y].getY()){
+            x = ComponentReferences[x][y].getX();
+            y = ComponentReferences[x][y].getY();
         }
         return ComponentReferences[x][y];
     }
@@ -78,11 +78,11 @@ public class ConnectedComponents {
 
         // make smaller root point to larger one
         if (root1.getSz() < root2.getSz()) {
-            ComponentReferences[root2.getXCoordinate()][root2.getYCoordinate()].setSz(ComponentReferences[root1.getXCoordinate()][root1.getYCoordinate()].getSz() + ComponentReferences[root2.getXCoordinate()][root2.getYCoordinate()].getSz());
-            ComponentReferences[root1.getXCoordinate()][root1.getYCoordinate()].setCoordinate(root2.getXCoordinate(), root2.getYCoordinate());
+            ComponentReferences[root2.getX()][root2.getY()].setSz(ComponentReferences[root1.getX()][root1.getY()].getSz() + ComponentReferences[root2.getX()][root2.getY()].getSz());
+            ComponentReferences[root1.getX()][root1.getY()].setCoordinate(root2.getX(), root2.getY());
         }else {
-            ComponentReferences[root1.getXCoordinate()][root1.getYCoordinate()].setSz(ComponentReferences[root1.getXCoordinate()][root1.getYCoordinate()].getSz() + ComponentReferences[root2.getXCoordinate()][root2.getYCoordinate()].getSz());
-            ComponentReferences[root2.getXCoordinate()][root2.getYCoordinate()].setCoordinate(root1.getXCoordinate(), root1.getYCoordinate());
+            ComponentReferences[root1.getX()][root1.getY()].setSz(ComponentReferences[root1.getX()][root1.getY()].getSz() + ComponentReferences[root2.getX()][root2.getY()].getSz());
+            ComponentReferences[root2.getX()][root2.getY()].setCoordinate(root1.getX(), root1.getY());
         }
         count--;
 
@@ -114,7 +114,7 @@ public class ConnectedComponents {
         for(int ii = 0; ii < m_boardSize+2; ii++){
             for(int jj = 0; jj < m_boardSize+2; jj++){
                 treeRoot2=find(ii,jj);
-                if (treeRoot1.getXCoordinate() == treeRoot2.getXCoordinate() && treeRoot1.getYCoordinate() == treeRoot2.getYCoordinate()) {
+                if (treeRoot1.getX() == treeRoot2.getX() && treeRoot1.getY() == treeRoot2.getY()) {
                     members.add(new Coordinate());
                     members.get(members.size()-1).setCoordinate(ii,jj);
                 }
