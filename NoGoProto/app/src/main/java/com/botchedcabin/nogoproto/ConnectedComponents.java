@@ -92,9 +92,19 @@ public class ConnectedComponents {
      * Flattens the connected component tree
      */
     public void flatten(){
+        Coordinate headNode;
+        int xP; int yP;
         for(int ii = 0; ii < m_boardSize+2; ii++){
-            for(int jj = 0; jj < m_boardSize+2; ii++){
-                //if (Coordinate[ii][jj].x != )
+            for(int jj = 0; jj < m_boardSize+2; jj++){
+                xP = ComponentReferences[ii][jj].getX();
+                yP = ComponentReferences[ii][jj].getY();
+                headNode = find(ii,jj);
+                if (ComponentReferences[ii][jj] != headNode) {
+                    if(ComponentReferences[xP][yP] != find(ii,jj)){
+                        ComponentReferences[xP][yP].setSz(ComponentReferences[xP][yP].getSz()-ComponentReferences[ii][jj].getSz());
+                    }
+                    ComponentReferences[ii][jj].setCoordinate(headNode.getX(),headNode.getY());
+                }
             }
         }
     }
@@ -179,5 +189,19 @@ class ConnectedComponentsTest{
             component.get(ii).printContents();
         }
 
+        /**
+         * Test Flatten
+         */
+        System.out.println("\n Testing flatten()\nBefore:");
+        for(int ii = 1; ii < boardSize+1; ii++){
+            graph.ComponentReferences[1][ii].printContents();
+            graph.ComponentReferences[2][ii].printContents();
+        }
+        graph.flatten();
+        System.out.println("After:");
+        for(int ii = 1; ii < boardSize+1; ii++){
+            graph.ComponentReferences[1][ii].printContents();
+            graph.ComponentReferences[2][ii].printContents();
+        }
     }
 }
