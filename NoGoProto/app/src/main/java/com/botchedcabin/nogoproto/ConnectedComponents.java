@@ -94,7 +94,7 @@ public class ConnectedComponents {
     public void flatten(){
         for(int ii = 0; ii < m_boardSize+2; ii++){
             for(int jj = 0; jj < m_boardSize+2; ii++){
-                //if (Coordinate[ii][jj].x != )
+
             }
         }
     }

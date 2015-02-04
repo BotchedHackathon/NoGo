@@ -27,18 +27,18 @@ public class Coordinate {
 
 
     /**
-     * Set parent to [x,y]
+     * Set parent to [x1,y1]
      */
-    public void setCoordinate(int x, int y){
-        this.x = x;
-        this.y = y;
+    public void setCoordinate(int x1, int y1){
+        x = x1;
+        y = y1;
     }
 
     /**
-     * Set size of subtree rooted at parent node to sz.
+     * Set size of subtree rooted at parent node to depth1.
      */
-    public void setSz(int sz){
-        this.sz = sz;
+    public void setSz(int sz1){
+        sz = sz1;
     }
 
     /**
@@ -57,26 +57,11 @@ public class Coordinate {
     }
 
     /**
-     * Print contents of Coordinate object for debugging purposes.
+     *
      */
     public void printContents(){
         System.out.println("Tree Root: (" + getX() + "," + getY() + "),");
         System.out.println("Subtree Size: " + getSz() + ",");
-    }
-
-
-    /**
-     * Check if Coordinates share the same x,y references
-     * @param other Another instance of a Coordinate object.
-     * @return true if the references match
-     */
-    public boolean checkRefsEqual(Object other) {
-        boolean result = false;
-        if (other instanceof Coordinate) {
-            Coordinate that = (Coordinate) other;
-            result = (this.getX() == that.getX() && this.getX() == that.getY());
-        }
-        return result;
     }
 }
 
@@ -97,12 +82,6 @@ class CoordinateTest{
         aa.setCoordinate(5,5); aa.setSz(5);
         aa.printContents();
 
-        /**
-         * Test checkRefsEqual
-         */
-        Coordinate bb = new Coordinate();
-        bb.setCoordinate(5,5);
-        System.out.println("Testing checkRefsEqual..." + bb.checkRefsEqual(aa));
 
     }
 }
