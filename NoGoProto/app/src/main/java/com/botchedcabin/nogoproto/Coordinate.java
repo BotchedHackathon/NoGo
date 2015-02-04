@@ -84,7 +84,7 @@ class CoordinateTest{
     public static void main(String[] args){
 
         /**
-         * Test Constructor
+         * Tests Constructor
          */
         System.out.println("Testing Constructor...");
         Coordinate aa = new Coordinate();
