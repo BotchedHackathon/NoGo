@@ -61,7 +61,7 @@ public class Game {
 
     private Piece checkAdjacent(int row, int col, int dir){
 
-        //validate values and throw except when appropriate instead fo returning 9999
+        //validate values and throw except when appropriate instead of returning Empty
 
         //Down
         if (dir == 0)
@@ -80,7 +80,7 @@ public class Game {
         {   return m_gameboard.getBoard(row - 1, col);  }
 
         else
-        { return 9999; }
+        { return Piece.Empty; }
 
     }
 
