@@ -19,6 +19,7 @@ public class GameBoard {
 
     public int m_boardSize;
     public int[][] boardState;
+    public ConnectedComponents conComp = new ConnectedComponents(m_boardSize);
     static final int defaultGameBoardSize = 9;
 //  Need a weightedUnionFind object to keep track of connections
 
@@ -50,12 +51,16 @@ public class GameBoard {
 
         // Need to initialize invisible boundary rows and columns to different value.
         for (int i = 0; i < m_boardSize + 1; i++){
+            // starts in corners and fills in by row/column
             boardState[0][i] = 3;
+            conComp.union(0,i,0,i+1);
             boardState[m_boardSize + 1][m_boardSize+1-i] = 3;
+            conComp.union(m_boardSize+1,m_boardSize+1-i,m_boardSize+1,m_boardSize-i);
             boardState[i][0] = 3;
+            conComp.union(i,0,i+1,0);
             boardState[m_boardSize+1-i][m_boardSize + 1] = 3;
+            conComp.union(m_boardSize+1-i,m_boardSize + 1,m_boardSize-i,m_boardSize+1);
         }
-
     }
 
     /**
