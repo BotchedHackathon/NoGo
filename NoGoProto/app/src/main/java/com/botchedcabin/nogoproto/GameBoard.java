@@ -5,12 +5,8 @@ package com.botchedcabin.nogoproto;
  *
  *  m_boardSize is the length/width of the square grid size.
  *
- *  boardState is a 2D int array that keeps track of the state of the board
- *  and where pieces are placed:
- *      0 = empty
- *      1 = black piece
- *      2 = white piece
- *      3 = invisible boundary node
+ *  boardState is a 2D Piece array that keeps track of the state of the board
+ *  and where pieces are placed.
  *
  *      defaultGameBoardSize defines the dimension of the Go board if
  *      the constructor is called without passing in a value.
