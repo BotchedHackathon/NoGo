@@ -59,7 +59,7 @@ public class Game {
      *              0 = Down
      */
 
-    private int checkAdjacent(int row, int col, int dir){
+    private Piece checkAdjacent(int row, int col, int dir){
 
         //validate values and throw except when appropriate instead fo returning 9999
 
