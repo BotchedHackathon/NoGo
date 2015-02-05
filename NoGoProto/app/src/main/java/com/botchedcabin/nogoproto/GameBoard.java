@@ -18,10 +18,9 @@ package com.botchedcabin.nogoproto;
 public class GameBoard {
 
     public int m_boardSize;
-    public int[][] boardState;
+    public Piece[][] boardState;
     public ConnectedComponents conComp = new ConnectedComponents(m_boardSize);
     static final int defaultGameBoardSize = 9;
-//  Need a weightedUnionFind object to keep track of connections
 
 
     /**
@@ -47,18 +46,18 @@ public class GameBoard {
      */
     private void initializeGameBoard(int boardSize){
         m_boardSize = boardSize;
-        boardState = new int[m_boardSize + 2][m_boardSize + 2];
+        boardState = new Piece[m_boardSize + 2][m_boardSize + 2];
 
         // Need to initialize invisible boundary rows and columns to different value.
         for (int i = 0; i < m_boardSize + 1; i++){
             // starts in corners and fills in by row/column
-            boardState[0][i] = 3;
+            boardState[0][i] = Piece.Border;
             conComp.union(0,i,0,i+1);
-            boardState[m_boardSize + 1][m_boardSize+1-i] = 3;
+            boardState[m_boardSize + 1][m_boardSize+1-i] = Piece.Border;
             conComp.union(m_boardSize+1,m_boardSize+1-i,m_boardSize+1,m_boardSize-i);
-            boardState[i][0] = 3;
+            boardState[i][0] = Piece.Border;
             conComp.union(i,0,i+1,0);
-            boardState[m_boardSize+1-i][m_boardSize + 1] = 3;
+            boardState[m_boardSize+1-i][m_boardSize + 1] = Piece.Border;
             conComp.union(m_boardSize+1-i,m_boardSize + 1,m_boardSize-i,m_boardSize+1);
         }
     }
@@ -77,18 +76,18 @@ public class GameBoard {
     }
 
     public void placeBlackPiece(int x, int y){
-        boardState[x][y] = 1;
+        boardState[x][y] = Piece.Black;
     }
 
     public void placeWhitePiece(int x, int y){
-        boardState[x][y] = 2;
+        boardState[x][y] = Piece.White;
     }
 
-    public int[][] getBoard(){
+    public Piece[][] getBoard(){
         return boardState;
     }
 
-    public int getBoard(int x, int y){
+    public Piece getBoard(int x, int y){
         return boardState[x][y];
     }
 
