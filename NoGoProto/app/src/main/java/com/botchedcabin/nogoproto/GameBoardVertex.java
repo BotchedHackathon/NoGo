@@ -1,12 +1,15 @@
 package com.botchedcabin.nogoproto;
 import java.util.ArrayList;
 
-/**
+/** GameBoardVertex.java
+ * Implements vertex of GameBoard graph which stores the piece stored at the vertex and an ArrayList
+ * of the neighbor vertices of this vertex.
  * Created by Michael Nip on 2/6/2015.
  */
+
 public class GameBoardVertex {
-    public Piece pieceAtVertex;
-    public ArrayList<GameBoardVertex> neighbors;
+    private Piece pieceAtVertex;
+    private ArrayList<GameBoardVertex> neighbors;
 
     /**
      * Default Constructor
