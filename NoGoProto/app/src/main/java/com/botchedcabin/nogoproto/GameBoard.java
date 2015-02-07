@@ -51,6 +51,10 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Initializes a square board
+     * @param boardSize number of rows  / columns
+     */
     private void initializeGameBoard(int boardSize){
         int numVertices = boardSize * boardSize;
         int halfNumEdges = boardSize * (boardSize - 1);
@@ -68,18 +72,33 @@ public class GameBoard {
         initializeGameBoard(numVertices,edges);
     }
 
+    /**
+     * Places a piece at the vertex specified by coord
+     * @param coord Coordinate in boardVertices where the vertex lives
+     * @param gamePiece to be placed
+     */
     public void placePiece(int coord, Piece gamePiece){
         boardVertices.get(coord).placePiece(gamePiece);
     }
 
+    /**
+     * @return boardVertices
+     */
     public ArrayList getBoard(){
         return boardVertices;
     }
 
+    /**
+     * @param coord Coordinate in boardVertices where the vertex lives
+     * @return the GameBoardVertex at the coordinate
+     */
     public GameBoardVertex getBoard(int coord){
         return boardVertices.get(coord);
     }
 
+    /**
+     * Prints the boardVertex data to the console
+     */
     public void printBoard(){
         for (GameBoardVertex node : boardVertices){
             node.printContents();
@@ -87,10 +106,20 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Computes the connected component containing the vertex at coord.  Wraps getCCDfs.
+     * @param coord Coordinate in boardVertices where a vertex lives
+     * @return The connected component containing the vertex at coord
+     */
     public ArrayList<GameBoardVertex> getConnectedComponent(int coord){
         return getConnectedComponent(boardVertices.get(coord));
     }
 
+    /**
+     * Computes the connected component containing the vertex.  Wraps getCCDfs.
+     * @param currentVertex a board vertex
+     * @return the connected component containing currentVertex
+     */
     public ArrayList<GameBoardVertex> getConnectedComponent(GameBoardVertex currentVertex){
         ArrayList<GameBoardVertex> connectedComponent = new ArrayList<GameBoardVertex>();
 
@@ -105,6 +134,11 @@ public class GameBoard {
         return connectedComponent;
     }
 
+    /**
+     * Computes the connected component using Depth-First Search
+     * @param currentVertex Seed vertex
+     * @return daughter vertices of the DFS
+     */
     private ArrayList<GameBoardVertex> getCCDfs(GameBoardVertex currentVertex){
         ArrayList<GameBoardVertex> cc = new ArrayList<GameBoardVertex>();
         cc.add(currentVertex);

@@ -12,14 +12,26 @@ public class Piece {
     Piece(){
     }
 
+    /**
+     * More elaborate constructor which specifies the color of the piece at construction
+     * @param pieceColor color of the piece
+     */
     Piece(Color pieceColor){
         this.pieceColor = pieceColor;
     }
 
+    /**
+     * @return Color field of the piece
+     */
     public Color getColor(){
         return pieceColor;
     }
 
+    /**
+     * Checks if two pieces have the same color
+     * @param p piece that it compares to
+     * @return true if they have the same color, false otherwise
+     */
     public boolean equals(Piece p){
         return (pieceColor == p.pieceColor);
     }
