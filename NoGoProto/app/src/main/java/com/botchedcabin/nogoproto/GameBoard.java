@@ -58,10 +58,10 @@ public class GameBoard {
         // Enumerate edges for square board
         for (int ii = 0; ii < boardSize; ii++){
             for (int jj = 0; jj < boardSize - 1; jj++){
-                edges[(boardSize - 1) * ii + jj][0] = (boardSize - 1) * ii + jj;
-                edges[(boardSize - 1) * ii + jj][1] = (boardSize - 1) * ii + jj + 1;
-                edges[(boardSize - 1) * ii + jj + halfNumEdges][0] = (boardSize - 1) * jj + ii;
-                edges[(boardSize - 1) * ii + jj + halfNumEdges][1] = (boardSize) * jj + ii;
+                edges[(boardSize - 1) * ii + jj][0] = boardSize * ii + jj;
+                edges[(boardSize - 1) * ii + jj][1] = boardSize * ii + jj + 1;
+                edges[(boardSize - 1) * ii + jj + halfNumEdges][0] = boardSize * jj + ii;
+                edges[(boardSize - 1) * ii + jj + halfNumEdges][1] = boardSize * (jj + 1) + ii;
             }
         }
         initializeGameBoard(numVertices,edges);
