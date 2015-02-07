@@ -88,8 +88,11 @@ public class GameBoard {
     }
 
     public ArrayList<GameBoardVertex> getConnectedComponent(int coord){
+        return getConnectedComponent(boardVertices.get(coord));
+    }
+
+    public ArrayList<GameBoardVertex> getConnectedComponent(GameBoardVertex currentVertex){
         ArrayList<GameBoardVertex> connectedComponent = new ArrayList<GameBoardVertex>();
-        GameBoardVertex currentVertex = boardVertices.get(coord);
 
         connectedComponent.add(currentVertex);
         visited.add(currentVertex);

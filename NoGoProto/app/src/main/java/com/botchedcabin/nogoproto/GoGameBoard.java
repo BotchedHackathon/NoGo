@@ -17,6 +17,7 @@ public class GoGameBoard extends GameBoard {
 
     public int m_boardSize;
     static final int defaultGameBoardSize = 9;
+    private ArrayList<GameBoardVertex> validateVisited = new ArrayList<GameBoardVertex>();
 
     /**
      * Default constructor.
@@ -42,13 +43,50 @@ public class GoGameBoard extends GameBoard {
      * Method to convert a gameboard coordinate to it's proper index value
      */
     public int convertCoordToIndex(int x, int y){
-
         return m_boardSize*(x-1) + (y-1);
     }
 
-    public boolean validateMove(int x, int y){
+    public boolean validateMove(int x, int y, Piece p){
         // Check if move is legal
-        return true;
+        ArrayList<GameBoardVertex> ccPrimary;
+        ArrayList<GameBoardVertex> ccSecondarySeeds = new ArrayList<GameBoardVertex>();
+        ArrayList<GameBoardVertex> ccSecondary = new ArrayList<GameBoardVertex>();
+        ArrayList<GameBoardVertex> ccSecondaryTemp;
+        ArrayList<GameBoardVertex> ccSecondaryCap = new ArrayList<GameBoardVertex>();
+
+        placePiece(x,y,p);
+        ccPrimary = getConnectedComponent(x,y);
+        if (checkNeighborVacancy(ccPrimary)){
+            return true;
+        } else{
+            // Populate ccSecondarySeeds
+            for (GameBoardVertex v : ccPrimary){
+                for (GameBoardVertex vNeigh : v.getNeighbors()){
+                    if (vNeigh.samePieceCheck(v)){
+                        ccSecondarySeeds.add(vNeigh);
+                    }
+                }
+            }
+
+            // Check if this eliminates part of opponent's formation
+            boolean checkCapturePieces = false;
+            for (GameBoardVertex vSeed : ccSecondarySeeds){
+                if (!ccSecondary.contains(vSeed)){
+                    ccSecondaryTemp = getConnectedComponent(vSeed);
+                    if (!checkNeighborVacancy(ccSecondaryTemp)){
+                        checkCapturePieces = true;
+                        ccSecondaryCap.addAll(ccSecondaryTemp);
+                    }
+                    ccSecondary.addAll(ccSecondaryTemp);
+                }
+            }
+            if (checkCapturePieces) {
+                removePiece(ccSecondaryCap);
+            } else {
+                removePiece(x,y);
+            }
+            return checkCapturePieces;
+        }
     }
 
     public void placePiece(int x, int y, Piece gamePiece){
@@ -56,9 +94,23 @@ public class GoGameBoard extends GameBoard {
         boardVertices.get(index).placePiece(gamePiece);
     }
 
+    public void removePiece(int x, int y){
+        boardVertices.get(convertCoordToIndex(x,y)).placePiece(null);
+    }
+
+    public void removePiece(ArrayList<GameBoardVertex> removalList){
+        for (GameBoardVertex v : removalList){
+            v.placePiece(null);
+        }
+    }
+
     public GameBoardVertex getBoard(int x, int y){
         int index = convertCoordToIndex(x,y);
         return boardVertices.get(index);
+    }
+
+    public ArrayList<GameBoardVertex> getConnectedComponent(int x, int y){
+        return getConnectedComponent(convertCoordToIndex(x,y));
     }
 
     public boolean checkNeighborVacancy(int x, int y){

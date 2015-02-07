@@ -108,7 +108,7 @@ public class Game {
     public void placePiece(int x, int y){
         //Called by UI when a player clicks a point on the board.
 
-        if (m_gameboard.validateMove(x, y)) {
+        if (m_gameboard.validateMove(x,y,new Piece())) {
             switch (getGameState()) {
                 case 0:
                 {
