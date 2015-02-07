@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class GameBoard {
 
-    public ArrayList<GameBoardVertex> boardVertices = new ArrayList<GameBoardVertex>();
+    public ArrayList<GameBoardVertex> boardVertices = new ArrayList<>();
     static final int defaultGameBoardSize = 9;
 
     /**
@@ -78,20 +78,19 @@ public class GameBoard {
     public GameBoardVertex getBoard(int coord){
         return boardVertices.get(coord);
     }
+
+    public void printBoard(){
+        for (GameBoardVertex node : boardVertices){
+            node.printContents();
+            System.out.println(" ");
+        }
+    }
 }
 
 class GameBoardTest {
     static public void main(String[] args) {
-        GameBoard testBoard = new GameBoard();
-        int coord;
-
-        //System.out.println(testBoard.getBoard());
-        for (int ii = 0; ii < 9; ii++){
-            for (int jj = 0; jj < 9; jj++){
-                coord = 9 * ii + jj;
-                System.out.println(coord);
-                testBoard.getBoard(coord).printContents();
-            }
-        }
+        int boardSize = 2;
+        GameBoard testBoard = new GameBoard(boardSize);
+        testBoard.printBoard();
     }
 }
