@@ -17,23 +17,23 @@ public class GoGameBoardVertex extends GameBoardVertex {
     /**
      * Constructor for placing a piece but no neighboring vertices
      */
-    GoGameBoardVertex(GoPiece pieceAtVertex){this.pieceAtVertex = pieceAtVertex;}
+    GoGameBoardVertex(GoPiece pieceAtVertex){pieceAtVertex = pieceAtVertex;}
 
     /**
      * Constructor for specifying neighbors but no piece
      */
-    GoGameBoardVertex(ArrayList<GoGameBoardVertex> neighbors){this.neighbors = neighbors;}
+    GoGameBoardVertex(ArrayList<GoGameBoardVertex> neighbors){neighbors = neighbors;}
 
     /**
      * Constructor for specifying only a single neighbor
      */
-    GoGameBoardVertex(GoGameBoardVertex neighbor){this.neighbors.add(neighbor);}
+    GoGameBoardVertex(GoGameBoardVertex neighbor){neighbors.add(neighbor);}
 
     /**
      * Constructor for specifying everything
      */
     GoGameBoardVertex(GoPiece pieceAtVertex, ArrayList<GoGameBoardVertex> neighbors){
-        this.pieceAtVertex = pieceAtVertex;
-        this.neighbors = neighbors;
+        pieceAtVertex = pieceAtVertex;
+        neighbors = neighbors;
     }
 }

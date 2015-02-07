@@ -17,7 +17,6 @@ public class GoGameBoard extends GameBoard {
 
     public int m_boardSize;
     static final int defaultGameBoardSize = 9;
-    private ArrayList<GameBoardVertex> validateVisited = new ArrayList<GameBoardVertex>();
 
     /**
      * Default constructor.
@@ -128,6 +127,33 @@ public class GoGameBoard extends GameBoard {
         }
         return false;
     }
+
+    public void printBoard(){
+        GoGameBoardVertex blackVtx = new GoGameBoardVertex();
+        blackVtx.placePiece(new Piece(Color.BLACK));
+        GoGameBoardVertex whiteVtx = new GoGameBoardVertex();
+        whiteVtx.placePiece(new Piece(Color.WHITE));
+
+        System.out.println("Current Board:");
+        for (int ii = 1; ii <= m_boardSize; ii++){
+            String line = new String();
+            for (int jj = 1; jj <= m_boardSize; jj++){
+                if (boardVertices.get(convertCoordToIndex(ii,jj)).getPiece() != null){
+                    switch (boardVertices.get(convertCoordToIndex(ii,jj)).getPiece().getColor()){
+                        case BLACK: line = line + "b";
+                            break;
+                        case WHITE: line = line + "w";
+                            break;
+                        default: line = line + "+";
+                            break;
+                    }
+                } else {
+                    line = line + "+";
+                }
+            }
+            System.out.println(line);
+        }
+    }
 }
 
 class GoGameBoardTest{
@@ -154,5 +180,17 @@ class CheckNeighborVacancyTest {
         System.out.println(testBoard.checkNeighborVacancy(1,1));
 
         System.out.println(testBoard.checkNeighborVacancy(testBoard.getConnectedComponent(0)));
+    }
+}
+
+class ValidateMoveTest{
+    public static void main(String[] args){
+        int boardSize = 5;
+        GoGameBoard testBoard = new GoGameBoard(boardSize);
+        testBoard.placePiece(1, 2, new Piece(Color.BLACK));
+        testBoard.placePiece(2, 1, new Piece(Color.BLACK));
+        testBoard.printBoard();
+        testBoard.validateMove(1,1,new Piece(Color.WHITE));
+        testBoard.printBoard();
     }
 }
