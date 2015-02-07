@@ -65,19 +65,19 @@ public class Game {
 
         //Down
         if (dir == 0)
-        {   return m_gameboard.getBoard(row + 1, col);  }
+        {   return m_gameboard.getBoard(row + 1, col).getPiece();  }
 
         //Right
         if (dir == 1)
-        {   return m_gameboard.getBoard(row, col + 1);  }
+        {   return m_gameboard.getBoard(row, col + 1).getPiece();  }
 
         //Left
         if (dir == 2)
-        {   return m_gameboard.getBoard(row, col - 1);  }
+        {   return m_gameboard.getBoard(row, col - 1).getPiece();  }
 
         //Up
         if (dir == 3)
-        {   return m_gameboard.getBoard(row - 1, col);  }
+        {   return m_gameboard.getBoard(row - 1, col).getPiece();  }
 
         else
         { return null; }
