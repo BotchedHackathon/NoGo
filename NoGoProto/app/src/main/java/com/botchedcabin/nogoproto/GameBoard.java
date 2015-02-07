@@ -14,18 +14,25 @@ public class GameBoard {
      * Default constructor.
      * Sets board size to 9x9
      */
-    public GameBoard(){
-        int numVertices = defaultGameBoardSize * defaultGameBoardSize;
-        int halfNumEdges = defaultGameBoardSize * (defaultGameBoardSize - 1);
+    public GameBoard(){new GameBoard(defaultGameBoardSize);}
+
+    /**
+     * More elaborate constructor
+     * Generates a square board with each side having boardSize spaces.
+     * @param boardSize number of spaces along each row/column.
+     */
+    public GameBoard(int boardSize){
+        int numVertices = boardSize * boardSize;
+        int halfNumEdges = boardSize * (boardSize - 1);
         int edges[][] = new int[2 * halfNumEdges][2];
 
         // Enumerate edges for square board
-        for (int ii = 0; ii < defaultGameBoardSize; ii++){
-            for (int jj = 0; jj < defaultGameBoardSize - 1; jj++){
-                edges[(defaultGameBoardSize - 1) * ii + jj][0] = (defaultGameBoardSize - 1) * ii + jj;
-                edges[(defaultGameBoardSize - 1) * ii + jj][1] = (defaultGameBoardSize - 1) * ii + jj + 1;
-                edges[(defaultGameBoardSize - 1) * ii + jj + halfNumEdges][0] = (defaultGameBoardSize - 1) * jj + ii;
-                edges[(defaultGameBoardSize - 1) * ii + jj + halfNumEdges][1] = (defaultGameBoardSize) * jj + ii;
+        for (int ii = 0; ii < boardSize; ii++){
+            for (int jj = 0; jj < boardSize - 1; jj++){
+                edges[(boardSize - 1) * ii + jj][0] = (boardSize - 1) * ii + jj;
+                edges[(boardSize - 1) * ii + jj][1] = (boardSize - 1) * ii + jj + 1;
+                edges[(boardSize - 1) * ii + jj + halfNumEdges][0] = (boardSize - 1) * jj + ii;
+                edges[(boardSize - 1) * ii + jj + halfNumEdges][1] = (boardSize) * jj + ii;
             }
         }
         initializeGameBoard(numVertices,edges);
@@ -56,11 +63,6 @@ public class GameBoard {
             // The other
             boardVertices.get(edges[ii][1]).addNeighbor(boardVertices.get(edges[ii][0]));
         }
-    }
-
-    public boolean validateMove(int x, int y){
-        // Check if move is legal
-        return true;
     }
 
     public void placePiece(int coord, Piece gamePiece){

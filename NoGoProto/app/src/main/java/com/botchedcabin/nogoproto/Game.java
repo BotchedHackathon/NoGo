@@ -15,7 +15,7 @@ public class Game {
         // 0 = black player's turn
         // 1 = white player's turn
         // 2 = game over
-    public GameBoard m_gameboard;
+    public GoGameBoard m_gameboard;
 
     public Game() {
 
@@ -30,7 +30,7 @@ public class Game {
 
     public void newGame(int x){
         indexGameState = 0;
-        m_gameboard = new GameBoard(x);
+        m_gameboard = new GoGameBoard(x);
     }
 
     public int getGameState(){
@@ -80,7 +80,7 @@ public class Game {
         {   return m_gameboard.getBoard(row - 1, col);  }
 
         else
-        { return Piece.Empty; }
+        { return null; }
 
     }
 
@@ -112,14 +112,14 @@ public class Game {
             switch (getGameState()) {
                 case 0:
                 {
-                    m_gameboard.placeBlackPiece(x,y);
+                    m_gameboard.placePiece(x,y, new Piece(Color.BLACK));
                     changeGameState(1);
                     break;
                 }
 
                 case 1:
                 {
-                    m_gameboard.placeWhitePiece(x,y);
+                    m_gameboard.placePiece(x,y, new Piece(Color.WHITE));
                     changeGameState(0);
                     break;
                 }
