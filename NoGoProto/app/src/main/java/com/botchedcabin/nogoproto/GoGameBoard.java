@@ -60,9 +60,9 @@ public class GoGameBoard extends GameBoard {
         boardVertices.get(index).placePiece(gamePiece);
     }
 
-    public Piece getBoard(int x, int y){
+    public GoGameBoardVertex getBoard(int x, int y){
         int index = convertCoordToIndex(x,y);
-        return boardVertices.get(index).getPiece();
+        return (GoGameBoardVertex) boardVertices.get(index);
     }
 
 }

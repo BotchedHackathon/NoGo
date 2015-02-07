@@ -73,14 +73,20 @@ public class GameBoard {
         return boardVertices;
     }
 
-    public Piece getBoard(int coord){
-        return boardVertices.get(coord).getPiece();
+    public GameBoardVertex getBoard(int coord){
+        return boardVertices.get(coord);
     }
 
 }
 
 class GameBoardTest {
     static public void main(String[] args) {
+        GameBoard testBoard = new GameBoard();
+        for (int ii = 0; ii < 9; ii++){
+            for (int jj = 0; jj < 9; jj++){
+                testBoard.getBoard(9 * ii + jj).printContents();
+            }
+        }
 
     }
 }
