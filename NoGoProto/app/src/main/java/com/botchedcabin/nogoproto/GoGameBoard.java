@@ -21,7 +21,8 @@ public class GoGameBoard extends GameBoard {
      * Sets board size to 9x9
      */
     public GoGameBoard(){
-        initializeGoGameBoard(defaultGameBoardSize);
+        super(defaultGameBoardSize);
+        m_boardSize = defaultGameBoardSize;
     }
 
     /**
@@ -30,17 +31,10 @@ public class GoGameBoard extends GameBoard {
      * @param boardSize The size of the desired board.
      */
     public GoGameBoard(int boardSize){
-        initializeGoGameBoard(boardSize);
-    }
-
-    /**
-     * Initialize the board
-     * Sets the board size and blacks and white score
-     */
-    private void initializeGoGameBoard(int boardSize){
-        new GameBoard(boardSize);
+        super(boardSize);
         m_boardSize = boardSize;
     }
+
 
     /**
      * Method to convert a gameboard coordinate to it's proper index value
@@ -64,5 +58,15 @@ public class GoGameBoard extends GameBoard {
         int index = convertCoordToIndex(x,y);
         return (GoGameBoardVertex) boardVertices.get(index);
     }
+}
 
+class GoGameBoardTest{
+    public static void main(String[] args){
+        int boardSize = 2;
+        GoGameBoard testBoard = new GoGameBoard(boardSize);
+        testBoard.placePiece(1,1,new Piece(Color.BLACK));
+        testBoard.printBoard();
+        System.out.println(testBoard.m_boardSize);
+
+    }
 }

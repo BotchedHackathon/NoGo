@@ -61,6 +61,22 @@ public class GameBoardVertex {
         System.out.println(this);
         System.out.println("Occupied by: " + pieceAtVertex + "\n Neighbors:" + neighbors);
     }
+
+    public boolean samePieceCheck(GameBoardVertex p){
+        if (pieceAtVertex == null){
+            if (p.getPiece() == null){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if (p.getPiece() == null) {
+                return false;
+            } else {
+                return pieceAtVertex.equals(p.getPiece());
+            }
+        }
+    }
 }
 
 class GameBoardVertexTest {
@@ -70,5 +86,22 @@ class GameBoardVertexTest {
         testVertex.placePiece(new Piece(Color.WHITE));
         testVertex.addNeighbor(testVertex);
         testVertex.printContents();
+    }
+}
+
+class GameBoardVertexSamePieceCheckTest{
+    public static void main(String[] args){
+        GameBoardVertex v1 = new GameBoardVertex(new Piece(Color.BLACK));
+        GameBoardVertex v2 = new GameBoardVertex(new Piece(Color.BLACK));
+        GameBoardVertex v3 = new GameBoardVertex(new Piece(Color.WHITE));
+        GameBoardVertex v4 = new GameBoardVertex(new Piece());
+        GameBoardVertex v5 = new GameBoardVertex();
+        GameBoardVertex v6 = new GameBoardVertex();
+
+        System.out.println("v1 == v2: " + v1.samePieceCheck(v2));
+        System.out.println("v1 == v3: " + v1.samePieceCheck(v3));
+        System.out.println("v1 == v4: " + v1.samePieceCheck(v4));
+        System.out.println("v1 == v5: " + v1.samePieceCheck(v5));
+        System.out.println("v5 == v6: " + v5.samePieceCheck(v6));
     }
 }

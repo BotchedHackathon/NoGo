@@ -9,6 +9,7 @@ public class GameBoard {
 
     public ArrayList<GameBoardVertex> boardVertices = new ArrayList<>();
     static final int defaultGameBoardSize = 9;
+    private ArrayList<GameBoardVertex> visited = new ArrayList();
 
     /**
      * Default constructor.
@@ -85,6 +86,33 @@ public class GameBoard {
             System.out.println(" ");
         }
     }
+
+    public ArrayList<GameBoardVertex> getConnectedComponent(int coord){
+        ArrayList<GameBoardVertex> connectedComponent = new ArrayList<GameBoardVertex>();
+        GameBoardVertex currentVertex = boardVertices.get(coord);
+
+        connectedComponent.add(currentVertex);
+        visited.add(currentVertex);
+        for(GameBoardVertex v : currentVertex.getNeighbors()){
+            if (v.samePieceCheck(currentVertex) && !visited.contains(v)){
+                connectedComponent.addAll(getCCDfs(v));
+            }
+        }
+        visited.clear();
+        return connectedComponent;
+    }
+
+    private ArrayList<GameBoardVertex> getCCDfs(GameBoardVertex currentVertex){
+        ArrayList<GameBoardVertex> cc = new ArrayList<GameBoardVertex>();
+        cc.add(currentVertex);
+        visited.add(currentVertex);
+        for(GameBoardVertex v : currentVertex.getNeighbors()){
+            if (v.samePieceCheck(currentVertex) && !visited.contains(v)){
+                cc.addAll(getCCDfs(v));
+            }
+        }
+        return cc;
+    }
 }
 
 class GameBoardTest {
@@ -92,5 +120,24 @@ class GameBoardTest {
         int boardSize = 2;
         GameBoard testBoard = new GameBoard(boardSize);
         testBoard.printBoard();
+    }
+}
+
+class GameBoardConnectedComponentsTest {
+    static public void main(String[] args){
+        int boardSize = 3;
+        GameBoard testBoard = new GameBoard(boardSize);
+        testBoard.printBoard();
+        ArrayList<GameBoardVertex> cc1 = testBoard.getConnectedComponent(0);
+        System.out.println(cc1);
+
+        testBoard.placePiece(0,new Piece(Color.BLACK));
+        testBoard.placePiece(1,new Piece(Color.BLACK));
+
+        ArrayList<GameBoardVertex> cc2 = testBoard.getConnectedComponent(0);
+        ArrayList<GameBoardVertex> cc3 = testBoard.getConnectedComponent(2);
+
+        System.out.println(cc2);
+        System.out.println(cc3);
     }
 }
