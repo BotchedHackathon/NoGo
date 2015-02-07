@@ -76,3 +76,9 @@ public class GameBoard {
     }
 
 }
+
+class GameBoardTest {
+    static public void main() {
+
+    }
+}

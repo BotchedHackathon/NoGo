@@ -56,4 +56,21 @@ public class GameBoardVertex {
     public Piece getPiece(){return pieceAtVertex;}
 
     public void placePiece(Piece newPiece){pieceAtVertex = newPiece;}
+
+    public void printContents(){
+        System.out.println("Occupied by: " + pieceAtVertex + "\n Neighbors:");
+        for (int ii = 0; ii < neighbors.size(); ii++){
+            System.out.println(neighbors.get(ii));
+        }
+    }
+}
+
+class GameBoardVertexTest {
+    public static void main(){
+        GameBoardVertex testVertex = new GameBoardVertex();
+        testVertex.printContents();
+        testVertex.placePiece(new Piece(Color.WHITE));
+        testVertex.addNeighbor(testVertex);
+        testVertex.printContents();
+    }
 }
