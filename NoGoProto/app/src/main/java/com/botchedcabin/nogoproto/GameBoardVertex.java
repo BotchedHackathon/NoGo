@@ -45,6 +45,10 @@ public class GameBoardVertex {
      */
     public ArrayList<GameBoardVertex> getNeighbors(){return neighbors;}
 
+    public void addNeighbor(GameBoardVertex neighbor){
+        neighbors.add(neighbor);
+    }
+
     /**
      * getPiece
      * @return piece (if any) stored at this vertex.

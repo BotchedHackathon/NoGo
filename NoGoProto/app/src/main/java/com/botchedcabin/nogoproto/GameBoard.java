@@ -1,69 +1,61 @@
 package com.botchedcabin.nogoproto;
 
+import java.util.ArrayList;
+
 /**
- * GameBoard class represents the Go game board.
- *
- *  m_boardSize is the length/width of the square grid size.
- *
- *  boardState is a 2D Piece array that keeps track of the state of the board
- *  and where pieces are placed.
- *
- *      defaultGameBoardSize defines the dimension of the Go board if
- *      the constructor is called without passing in a value.
+ * GameBoard class represents a game board represented as a graph.
  */
 public class GameBoard {
 
-    public int m_boardSize;
-    public Piece[][] boardState;
-    public ConnectedComponents conComp = new ConnectedComponents(m_boardSize);
+    public ArrayList<GameBoardVertex> boardVertices;
     static final int defaultGameBoardSize = 9;
-
 
     /**
      * Default constructor.
      * Sets board size to 9x9
      */
     public GameBoard(){
-        initializeGameBoard(defaultGameBoardSize);
+        int numVertices = defaultGameBoardSize * defaultGameBoardSize;
+        int halfNumEdges = defaultGameBoardSize * (defaultGameBoardSize - 1);
+        int edges[][] = new int[2 * halfNumEdges][2];
+
+        // Enumerate edges for square board
+        for (int ii = 0; ii < defaultGameBoardSize; ii++){
+            for (int jj = 0; jj < defaultGameBoardSize - 1; jj++){
+                edges[(defaultGameBoardSize - 1) * ii + jj][0] = (defaultGameBoardSize - 1) * ii + jj;
+                edges[(defaultGameBoardSize - 1) * ii + jj][1] = (defaultGameBoardSize - 1) * ii + jj + 1;
+                edges[(defaultGameBoardSize - 1) * ii + jj + halfNumEdges][0] = (defaultGameBoardSize - 1) * jj + ii;
+                edges[(defaultGameBoardSize - 1) * ii + jj + halfNumEdges][1] = (defaultGameBoardSize) * jj + ii;
+            }
+        }
+        initializeGameBoard(numVertices,edges);
     }
 
     /**
-     * A constructor.
-     * A more elaborate description of the constructor.
-     * @param boardSize The size of the desired board.
+     * A more elaborate version of the constructor.  Requires the number of vertices and a list of the edges
+     * @param numVertices Number of vertices of the board graph
+     * @param edges List of the edges connecting the vertices
      */
-    public GameBoard(int boardSize){
-        initializeGameBoard(boardSize);
+    public GameBoard(int numVertices, int[][] edges){
+        initializeGameBoard(numVertices, edges);
     }
 
     /**
      * Initialize the board
      * Sets the board size and blacks and white score
      */
-    private void initializeGameBoard(int boardSize){
-        m_boardSize = boardSize;
-        boardState = new Piece[m_boardSize + 2][m_boardSize + 2];
-
-        // Need to initialize invisible boundary rows and columns to different value.
-        for (int i = 0; i < m_boardSize + 1; i++){
-            // starts in corners and fills in by row/column
-            boardState[0][i] = Piece.Border;
-            conComp.union(0,i,0,i+1);
-            boardState[m_boardSize + 1][m_boardSize+1-i] = Piece.Border;
-            conComp.union(m_boardSize+1,m_boardSize+1-i,m_boardSize+1,m_boardSize-i);
-            boardState[i][0] = Piece.Border;
-            conComp.union(i,0,i+1,0);
-            boardState[m_boardSize+1-i][m_boardSize + 1] = Piece.Border;
-            conComp.union(m_boardSize+1-i,m_boardSize + 1,m_boardSize-i,m_boardSize+1);
+    private void initializeGameBoard(int numVertices, int[][] edges){
+        for (int ii = 0; ii < numVertices; ii++){
+            boardVertices.add(new GameBoardVertex());
         }
-    }
 
-    /**
-     * Method to convert a gameboard coordinate to it's proper index value
-     */
-    public int convertCoordToIndex(int x, int y){
-
-        return 1;
+        // Links edges assuming undirected graph
+        for (int ii = 0; ii < edges.length; ii++){
+            // One direction
+            boardVertices.get(edges[ii][0]).addNeighbor(boardVertices.get(edges[ii][1]));
+            // The other
+            boardVertices.get(edges[ii][1]).addNeighbor(boardVertices.get(edges[ii][0]));
+        }
     }
 
     public boolean validateMove(int x, int y){
@@ -71,20 +63,16 @@ public class GameBoard {
         return true;
     }
 
-    public void placeBlackPiece(int x, int y){
-        boardState[x][y] = Piece.Black;
+    public void placePiece(int coord, Piece gamePiece){
+        boardVertices.get(coord).placePiece(gamePiece);
     }
 
-    public void placeWhitePiece(int x, int y){
-        boardState[x][y] = Piece.White;
+    public ArrayList getBoard(){
+        return boardVertices;
     }
 
-    public Piece[][] getBoard(){
-        return boardState;
-    }
-
-    public Piece getBoard(int x, int y){
-        return boardState[x][y];
+    public Piece getBoard(int coord){
+        return boardVertices.get(coord).getPiece();
     }
 
 }
