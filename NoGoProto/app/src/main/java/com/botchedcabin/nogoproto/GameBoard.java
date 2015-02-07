@@ -78,7 +78,7 @@ public class GameBoard {
 }
 
 class GameBoardTest {
-    static public void main() {
+    static public void main(String[] args) {
 
     }
 }

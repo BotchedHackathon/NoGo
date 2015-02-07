@@ -66,7 +66,7 @@ public class GameBoardVertex {
 }
 
 class GameBoardVertexTest {
-    public static void main(){
+    public static void main(String[] args){
         GameBoardVertex testVertex = new GameBoardVertex();
         testVertex.printContents();
         testVertex.placePiece(new Piece(Color.WHITE));
