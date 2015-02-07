@@ -1,5 +1,7 @@
 package com.botchedcabin.nogoproto;
 
+import java.util.ArrayList;
+
 /**
  * GoGameBoard class represents the Go game board.
  *
@@ -54,9 +56,25 @@ public class GoGameBoard extends GameBoard {
         boardVertices.get(index).placePiece(gamePiece);
     }
 
-    public GoGameBoardVertex getBoard(int x, int y){
+    public GameBoardVertex getBoard(int x, int y){
         int index = convertCoordToIndex(x,y);
-        return (GoGameBoardVertex) boardVertices.get(index);
+        return boardVertices.get(index);
+    }
+
+    public boolean checkNeighborVacancy(int x, int y){
+        for (GameBoardVertex v : getBoard(x,y).getNeighbors()){
+            if (v.getPiece() == null){return true;}
+        }
+        return false;
+    }
+
+    public boolean checkNeighborVacancy(ArrayList<GameBoardVertex> vertexList){
+        for (GameBoardVertex v : vertexList){
+            for (GameBoardVertex neigh : v.getNeighbors()){
+                if (neigh.getPiece() == null){return true;}
+            }
+        }
+        return false;
     }
 }
 
@@ -68,5 +86,21 @@ class GoGameBoardTest{
         testBoard.printBoard();
         System.out.println(testBoard.m_boardSize);
 
+    }
+}
+
+class CheckNeighborVacancyTest {
+    public static void main(String[] args){
+        int boardSize = 2;
+        GoGameBoard testBoard = new GoGameBoard(boardSize);
+        System.out.println(testBoard.checkNeighborVacancy(1,1));
+        System.out.println(testBoard.checkNeighborVacancy(testBoard.getConnectedComponent(0)));
+
+        for (int ii = 0; ii < boardSize*boardSize; ii++){
+            testBoard.placePiece(ii,new Piece(Color.BLACK));
+        }
+        System.out.println(testBoard.checkNeighborVacancy(1,1));
+
+        System.out.println(testBoard.checkNeighborVacancy(testBoard.getConnectedComponent(0)));
     }
 }
