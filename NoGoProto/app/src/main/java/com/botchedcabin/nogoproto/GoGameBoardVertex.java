@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class GoGameBoardVertex extends GameBoardVertex {
     private GoPiece pieceAtVertex;
-    private ArrayList<GoGameBoardVertex> neighbors;
+    private ArrayList<GoGameBoardVertex> neighbors = new ArrayList<GoGameBoardVertex>();
 
     /**
      * Default Constructor
@@ -36,23 +36,4 @@ public class GoGameBoardVertex extends GameBoardVertex {
         this.pieceAtVertex = pieceAtVertex;
         this.neighbors = neighbors;
     }
-
-    /**
-     * getNeighbors
-     * @return neighbor vertices
-     */
-    public ArrayList<GameBoardVertex> getNeighbors(){
-        ArrayList<GameBoardVertex> neighborsCopy = new ArrayList<GameBoardVertex>();
-        for (int ii = 0; ii < neighbors.size(); ii++){
-            neighborsCopy.add(neighbors.get(ii));
-        }
-        return neighborsCopy;}
-
-    /**
-     * getPiece
-     * @return piece (if any) stored at this vertex.
-     */
-    public GoPiece getPiece(){return pieceAtVertex;}
-
-    public void placePiece(GoPiece newPiece){pieceAtVertex = newPiece;}
 }

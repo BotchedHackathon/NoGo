@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class GameBoardVertex {
     private Piece pieceAtVertex;
-    private ArrayList<GameBoardVertex> neighbors;
+    private ArrayList<GameBoardVertex> neighbors = new ArrayList<GameBoardVertex>();
 
     /**
      * Default Constructor
@@ -58,10 +58,8 @@ public class GameBoardVertex {
     public void placePiece(Piece newPiece){pieceAtVertex = newPiece;}
 
     public void printContents(){
-        System.out.println("Occupied by: " + pieceAtVertex + "\n Neighbors:");
-        for (int ii = 0; ii < neighbors.size(); ii++){
-            System.out.println(neighbors.get(ii));
-        }
+        System.out.println(this);
+        System.out.println("Occupied by: " + pieceAtVertex + "\n Neighbors:" + neighbors);
     }
 }
 
