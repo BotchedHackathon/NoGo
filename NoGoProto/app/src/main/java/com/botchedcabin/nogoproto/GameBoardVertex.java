@@ -55,13 +55,25 @@ public class GameBoardVertex {
      */
     public Piece getPiece(){return pieceAtVertex;}
 
+    /**
+     * Places a piece at the vertex
+     * @param newPiece piece to place
+     */
     public void placePiece(Piece newPiece){pieceAtVertex = newPiece;}
 
+    /**
+     * Prints the instance variables of the vertex to the console
+     */
     public void printContents(){
         System.out.println(this);
         System.out.println("Occupied by: " + pieceAtVertex + "\n Neighbors:" + neighbors);
     }
 
+    /**
+     * Checks if another vertex and this one contain the same kind of piece
+     * @param p the vertex to compare with
+     * @return true if they have the same kind of piece false if not
+     */
     public boolean samePieceCheck(GameBoardVertex p){
         if (pieceAtVertex == null){
             if (p.getPiece() == null){
