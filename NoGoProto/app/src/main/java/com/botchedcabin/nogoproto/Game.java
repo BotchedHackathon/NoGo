@@ -15,7 +15,7 @@ public class Game {
         // 0 = black player's turn
         // 1 = white player's turn
         // 2 = game over
-    public GameBoard m_gameboard;
+    public GoGameBoard m_gameboard;
 
     public Game() {
 
@@ -30,7 +30,7 @@ public class Game {
 
     public void newGame(int x){
         indexGameState = 0;
-        m_gameboard = new GameBoard(x);
+        m_gameboard = new GoGameBoard(x);
     }
 
     public int getGameState(){
@@ -59,28 +59,28 @@ public class Game {
      *              0 = Down
      */
 
-    private int checkAdjacent(int row, int col, int dir){
+    private Piece checkAdjacent(int row, int col, int dir){
 
-        //validate values and throw except when appropriate instead fo returning 9999
+        //validate values and throw except when appropriate instead of returning Empty
 
         //Down
         if (dir == 0)
-        {   return m_gameboard.getBoard(row + 1, col);  }
+        {   return m_gameboard.getBoard(row + 1, col).getPiece();  }
 
         //Right
         if (dir == 1)
-        {   return m_gameboard.getBoard(row, col + 1);  }
+        {   return m_gameboard.getBoard(row, col + 1).getPiece();  }
 
         //Left
         if (dir == 2)
-        {   return m_gameboard.getBoard(row, col - 1);  }
+        {   return m_gameboard.getBoard(row, col - 1).getPiece();  }
 
         //Up
         if (dir == 3)
-        {   return m_gameboard.getBoard(row - 1, col);  }
+        {   return m_gameboard.getBoard(row - 1, col).getPiece();  }
 
         else
-        { return 9999; }
+        { return null; }
 
     }
 
@@ -108,18 +108,18 @@ public class Game {
     public void placePiece(int x, int y){
         //Called by UI when a player clicks a point on the board.
 
-        if (m_gameboard.validateMove(x, y)) {
+        if (m_gameboard.validateMove(x,y,new Piece())) {
             switch (getGameState()) {
                 case 0:
                 {
-                    m_gameboard.placeBlackPiece(x,y);
+                    m_gameboard.placePiece(x,y, new Piece(Color.BLACK));
                     changeGameState(1);
                     break;
                 }
 
                 case 1:
                 {
-                    m_gameboard.placeWhitePiece(x,y);
+                    m_gameboard.placePiece(x,y, new Piece(Color.WHITE));
                     changeGameState(0);
                     break;
                 }
